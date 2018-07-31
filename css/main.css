@@ -1,0 +1,17 @@
+body {
+  font-family: sans-serif;
+}
+
+video {
+  max-width: 100%;
+  width: 400px;
+}
+
+.streamContainer {
+  text-align: center;
+}
+
+#photo {
+  width: 400px;
+  height: 300px;
+}
