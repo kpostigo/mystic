@@ -16,11 +16,16 @@
   <h1>Realtime communication with WebRTC</h1>
   <div id="videoCanvas">
     <video id="camera" autoplay></video>
+  </div>
+  <div>
     <canvas id="photo"></canvas>
   </div>
-
-  <div id="buttons">
-    <button id="snap">Snap</button><span></span>
+  <div id = "buttons">
+    <button id="snap">Snap</button>
+    <button id="analyze">Analyze</button>
+    <button id="takeAnother">Take Another</button>
+  </div>
+  
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
   <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
