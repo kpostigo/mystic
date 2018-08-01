@@ -26,6 +26,8 @@ function processImage(imageURL) {
     };
 
     var sourceImageUrl = imageURL;
+    var formdata = new FormData();
+    formdata.append('image', $('#photo'));
     
     // Perform the REST API call.
     $.ajax({
@@ -40,7 +42,9 @@ function processImage(imageURL) {
         type: "POST",
 
         // Request body.
-        data: '{"url": ' + '"' + sourceImageUrl + '"}',
+        data: formdata,
+        processData: false,
+        contentType: false
     })
 
     .done(function(data) {
@@ -56,7 +60,8 @@ function processImage(imageURL) {
         console.log(Object.keys(emotions).reduce((a, b) => emotions[a] > emotions[b] ? a : b));
 
         return highestEmotion;
-    })
+
+        })
 
     .fail(function(jqXHR, textStatus, errorThrown) {
         // Display error message.
