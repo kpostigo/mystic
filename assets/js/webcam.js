@@ -1,4 +1,7 @@
 'use strict';
+
+$("#takeAnother").hide();
+$("#analyze").hide();
 /*GET VIDEO ON PAGE*/
 //streaming only video
 const mediaStreamConstraints = {
@@ -45,7 +48,21 @@ $("#snap").on("click", function() {
         var photo = document.getElementById("photo");
         var photoContext = photo.getContext("2d");
         photoContext.drawImage(video, 0, 0, photo.width, photo.height);
+        $("#camera").hide();
+        $("#photo").show();
+        $("#takeAnother").show();
+        $("#analyze").show();
+        $("#snap").hide();
     });
+
+
+$("#takeAnother").on("click", function() {
+    $("#camera").show();
+    $("#photo").hide();
+    $("#snap").show();
+    $("#takeAnother").hide();
+    $("#analyze").show();
+});
 
 function renderPhoto(data) {
   var canvas = document.createElement('canvas');
