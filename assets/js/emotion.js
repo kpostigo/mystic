@@ -26,6 +26,8 @@ function processImage(imageURL) {
     };
 
     var sourceImageUrl = imageURL;
+    var formData = new FormData;
+    formdata.append('image', $('#photo'));
     
     // Perform the REST API call.
     $.ajax({
@@ -40,7 +42,7 @@ function processImage(imageURL) {
         type: "POST",
 
         // Request body.
-        data: '{"url": ' + '"' + sourceImageUrl + '"}',
+        data: formData,
     })
 
     .done(function(data) {
