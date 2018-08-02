@@ -64,6 +64,13 @@ $("#takeAnother").on("click", function() {
     $("#analyze").show();
 });
 
+$("#analyze").on("click", function() {
+    var canvas = document.getElementById("photo");
+    var data = canvas.toDataURL('image/png');
+    //var data can be used to send to the emotions api. Creates a png image
+})
+
+
 function renderPhoto(data) {
   var canvas = document.createElement('canvas');
   canvas.width = photoContextW;
