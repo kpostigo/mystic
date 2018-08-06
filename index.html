@@ -18,59 +18,72 @@
 </head>
 
 <body>
+  <nav>
 
-  <div id="navigation">
     <nav>
       <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Logo</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <a href="#!" class="brand-logo">Logo</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+          <i class="material-icons">menu</i>
+        </a>
+        <ul class="right hide-on-med-and-down">
           <li>
-            <a href="sass.html">About</a>
+            <a href="sass.html">Sass</a>
           </li>
           <li>
-            <a href="badges.html">Start</a>
+            <a href="badges.html">Components</a>
           </li>
           <li>
-            <a href="collapsible.html">JavaScript</a>
+            <a href="collapsible.html">Javascript</a>
+          </li>
+          <li>
+            <a href="mobile.html">Mobile</a>
           </li>
         </ul>
       </div>
     </nav>
-  </div>
 
-  <div id="introduction">
-    <h1>test</h1>
-  </div>
-
-  <div id="about">
-    <h1>test</h1>
-  </div>
-
-  <div id="webcam">
-    <h1>Realtime communication with WebRTC</h1>
-    <div id="videoCanvas">
-      <video id="camera" autoplay></video>
-      <canvas id="photo"></canvas>
-    </div>
-    <div id="buttons">
-      <button id="snap">Snap</button>
-      <button id="analyze">Analyze</button>
-      <button id="takeAnother">Take Another</button>
-    </div>
+    <ul class="sidenav" id="mobile-demo">
+      <li>
+        <a href="sass.html">Sass</a>
+      </li>
+      <li>
+        <a href="badges.html">Components</a>
+      </li>
+      <li>
+        <a href="collapsible.html">Javascript</a>
+      </li>
+      <li>
+        <a href="mobile.html">Mobile</a>
+      </li>
+    </ul>
 
 
-    <div id="sentiment">
-      <h1>test</h1>
-    </div>
+    <div class="container">
 
-    <div id="options">
-      <h1>test</h1>
-    </div>
+      <div id="banner"></div>
 
-    <div id="playlist">
-      <h1>test</h1>
-    </div>
+      <div id="webcam">
 
+        <div id="videoCanvas">
+          <video id="camera" autoplay></video>
+          <canvas id="photo"></canvas>
+        </div>
+
+        <div id="buttons">
+          <button id="snap">Snap</button>
+          <button id="analyze">Analyze</button>
+          <button id="takeAnother">Take Another</button>
+        </div>
+
+
+        <div id="sentiment"></div>
+
+        <div id="options"></div>
+
+        <div id="playlist"> </div>
+
+      </div>
 
 </body>
 
@@ -82,5 +95,6 @@
 <script src="assets/js/lib/adapter.js"></script>
 <script src="assets/js/webcam.js"></script>
 <script src="assets/js/emotion.js"></script>
+<script src="assets/css/design.js"></script>
 
 </html>
