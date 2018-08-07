@@ -1,0 +1,30 @@
+.brand-logo{
+    font-family: 'Muli', sans-serif;
+    letter-spacing: 1px;
+}
+
+nav .brand-logo{
+    color: #252946; 
+}
+
+nav .material-icons{
+    color:black; 
+}
+
+nav ul a {
+    font-family: 'Muli', sans-serif;
+    color:black; 
+    font-weight: bold;
+    letter-spacing: 1px;
+    display: inline;
+}
+
+body {
+    background-color: #D88670;
+}
+
+#banner{
+    float: right;
+    width: 480px;
+}
+    
