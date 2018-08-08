@@ -8,12 +8,12 @@ nav .brand-logo{
 }
 
 nav .material-icons{
-    color:black; 
+    color: #252946; 
 }
 
 nav ul a {
     font-family: 'Muli', sans-serif;
-    color:black; 
+    color:#D88670; 
     font-weight: bold;
     letter-spacing: 1px;
     display: inline;
@@ -24,7 +24,7 @@ body {
 }
 
 .homepage{
-    height: 100%;
+    height: auto;
     width: 100%;
 }
 
@@ -32,7 +32,6 @@ body {
     float:right;
     height: 100%;
     width: 100%;
-
 }
 
 #text{
@@ -46,3 +45,103 @@ body {
     padding: 0px;
 }
 
+html {
+    display: grid;
+}
+
+.one{
+    margin-bottom: 0px;
+}
+
+.two{
+    background-color: #FADDCC;
+    height: 350px;
+    margin-bottom: 0px;
+}
+
+.three{
+    background-color: #252946;
+    margin-bottom: 0px;
+}
+
+.four{
+    background-color:#D88670; 
+    height: 400px;
+    margin-bottom: 0px;
+}
+
+.five{
+    background-color: #FADDCC;
+    height: 500px;
+    margin-bottom: 0px;
+}
+
+#buttons{
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+
+#snap {
+    font-family: 'Muli', sans-serif;
+    font-weight: 900;
+    background-color: #FADDCC;
+    color: #252946; 
+}
+
+#analyze {
+    font-family: 'Muli', sans-serif;
+    font-weight: 900;
+    background-color: #FADDCC;
+    color: #252946; 
+}
+
+#takeAnother {
+    font-family: 'Muli', sans-serif;
+    font-weight: 900;
+    background-color: #FADDCC;
+    color: #252946; 
+}
+
+.about{
+    text-align: center;
+}
+
+#text2{
+    margin-top: 60px;
+}
+
+#text3{
+    float:left;
+    margin-top: 30px;
+    margin-left: 13px;
+}
+
+#text4{
+    float:left;
+    margin-top: 28px;
+    margin-left: 16.5px;
+}
+
+#text5{
+    float:left;
+    margin-top: 25px;
+    margin-left: 5px;
+}
+
+.steps{
+    height: auto;
+    width: 100%;
+}
+
+.playlist{
+    text-align: center;
+    margin-top: 10px;
+    height: auto;
+    width: 100%;
+}
+
+.page-footer{
+    background-color: #252946;
+    font-family: 'Muli', sans-serif;
+    line-height: 18px;
+}
