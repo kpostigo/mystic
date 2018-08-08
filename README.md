@@ -7,6 +7,8 @@
 - music source
   - [youtube iFrame](https://developers.google.com/youtube/iframe_api_reference)
   - [youtube data](https://developers.google.com/youtube/v3/)
+- emotion analysis
+  - [microsoft cognitive services - Face](https://azure.microsoft.com/en-us/services/cognitive-services/face/)
 
 ### Library:
 - adapter.js (for webRTC)
