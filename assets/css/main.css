@@ -1,19 +1,12 @@
-body {
-  font-family: sans-serif;
-}
-
 video {
-  max-width: 100%;
-  width: 400px;
-  height: 300px;
-}
-
-.streamContainer {
-  text-align: center;
+  margin-top: 10px;
 }
 
 #photo {
-  width: 400px;
-  height: 300px;
+  margin-top: 10px;
   display: none;
+}
+
+#webcam{
+  text-align: center;
 }

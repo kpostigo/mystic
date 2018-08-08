@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/style.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
@@ -32,6 +32,7 @@
           <ul class="right hide-on-med-and-down">
             <li>
               <a href="#home">HOME</a>
+              <a href="#about">ABOUT</a>
               <a href="#start">START</a>
             </li>
           </ul>
@@ -43,12 +44,13 @@
   <ul class="sidenav" id="mobile-nav">
     <li>
       <a href="#home">HOME</a>
+      <a href="#about">ABOUT</a>
       <a href="#start">START</a>
     </li>
   </ul>
 
   <div class="homepage">
-    <div class="row">
+    <div class="row one">
       <div class="col s7 copy">
         <img src="assets/images/copy.jpg" id="text" height="480">
       </div>
@@ -60,34 +62,77 @@
 
 
 
-
-
-
-
-
-
-
-
-  <div id="webcam">
-
-    <div id="videoCanvas">
-      <video id="camera" autoplay></video>
-      <canvas id="photo"></canvas>
+  <div class="row two">
+    <div id="about">
+      <div class="col s12 about">
+        <img src="assets/images/about.jpg" id="text2">
+      </div>
     </div>
 
-    <div id="buttons">
-      <button id="snap">Snap</button>
-      <button id="analyze">Analyze</button>
-      <button id="takeAnother">Take Another</button>
+  </div>
+
+  <div class="row three">
+    <div class="col s12 steps">
+      <img src="assets/images/Step1.jpg" id="text3">
     </div>
+    <div class="col s12 camera">
+      <div id="webcam">
+        <div id="videoCanvas">
+          <video id="camera" width="400px" height="300px" autoplay></video>
+          <canvas id="photo" width="400px" height="300px"></canvas>
+        </div>
+        <div id="buttons">
+          <a class="waves-effect waves-light btn-small" id="snap">Snap</a>
+          <a class="waves-effect waves-light btn-small" id="analyze">Analyze</a>
+          <a class="waves-effect waves-light btn-small" id="takeAnother">Take Another</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-
+  <div class="row four">
+    <div class="col s12 steps">
+      <img src="assets/images/step2.jpg" id="text4">
+    </div>
     <div id="sentiment"></div>
+  </div>
 
-    <div id="options"></div>
+  <div class="row five">
+    <div class="col s12 steps">
+      <img src="assets/images/step3.jpg" id="text5">
+    </div>
+    <div class="col s12 playlist">
+      <div id="player"> </div>
+      <div class="table"></div>
+    </div>
+  </div>
 
-    <div id="player"> </div>
 
+
+  <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Team 6 M/W</h5>
+            <p class="grey-text text-lighten-4">Columbia University - Coding Bootcamp</p>
+
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Members</h5>
+                <li>Kenneth Postigo</li>
+                <li>Sacha Brady-Bowman</li>
+                <li>Richard Bunnicelli</li>
+                <li>Thanyawan Ausaranurak</li>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2018 Copyright Team 6 CCB
+        </div>
+      </div>
+    </footer>
+        
 
 </body>
 
