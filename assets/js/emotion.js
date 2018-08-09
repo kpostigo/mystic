@@ -58,3 +58,4 @@ function processImage(imageURL) {
         )
         return querySelection;
 }
+
