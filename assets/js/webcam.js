@@ -86,9 +86,3 @@ function renderPhoto(data) {
   img.data.set(data);
   context.putImageData(img, 0, 0);
 }
-
-// exporting image data
-module.exports = {
-    webcamImage: data
-  };
-
