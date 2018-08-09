@@ -14,6 +14,9 @@ const localVideo = document.querySelector('video');
 //local stream reproduced on the video
 let localStream;
 
+//data variable for the image taken by the camera
+var data;
+
 //adds mediaStream to the video
 function gotLocalMediaStream(mediaStream) {
     localStream = mediaStream;
@@ -66,9 +69,7 @@ $("#takeAnother").on("click", function() {
 
 $("#analyze").on("click", function() {
     var canvas = document.getElementById("photo");
-    var data = canvas.toDataURL('image/png');
-    //var data can be used to send to the emotions api. Creates a png image
-    console.log(data);
+    data = canvas.toDataURL('image/png');
 })
 
 
@@ -86,4 +87,8 @@ function renderPhoto(data) {
   context.putImageData(img, 0, 0);
 }
 
+// exporting image data
+module.exports = {
+    webcamImage: data
+  };
 
