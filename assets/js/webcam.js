@@ -70,6 +70,11 @@ $("#takeAnother").on("click", function() {
 $("#analyze").on("click", function() {
     var canvas = document.getElementById("photo");
     data = canvas.toDataURL('image/png');
+    $("#snap").show();
+    $("#takeAnother").hide();
+    $("#analyze").hide();
+    $("#camera").show();
+    $("#photo").hide();
 })
 
 
