@@ -1,7 +1,3 @@
-// Using the require keyword lets us access all of the exports
-// in our ess.js file
-var webcam = require("./webcam.js");
-
 /******************************************************************************\
  *                                                                            *
  *                          YOUTUBE API STUFF                                 *
@@ -30,7 +26,7 @@ var playlist,
   part = 'snippet',
   maxResults = 20,
   order = 'viewCount',
-  search = processImage(webcam.webcamImage),
+  search = sentiment + " hip hop",
   type = 'playlist';
 
 var part_URI = `part=${part}&`,
