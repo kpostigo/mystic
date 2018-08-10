@@ -90,7 +90,7 @@ function makeAjaxCall(url) {
         }
 
         if (analyze) {
-            let source = 'https://www.youtube.com/embed/' + playlist + '?origin=http%3A%2F%2Fkennethpostigo.me&amp;enablejsapi=1&amp;widgetid=1';
+            let source = 'https://www.youtube.com/embed/' + playlist + '?origin=https%3A%2F%2Fkennethpostigo.me&amp;enablejsapi=1&amp;widgetid=1';
             $('iframe').attr('src', source);
         } else {
             analyze = true;
@@ -118,7 +118,7 @@ function createTable() {
     for (let i = 0; i < videos; i++) {
         let videoInfo = localStorage.getItem('' + i + '').split('++'),
             videoTitle = videoInfo[0],
-            videoLink = 'https://www.youtube.com/embed/' + videoInfo[1] + '?origin=http%3A%2F%2Fkennethpostigo.me&amp;enablejsapi=1&amp;widgetid=1',
+            videoLink = 'https://www.youtube.com/embed/' + videoInfo[1] + '?origin=https%3A%2F%2Fkennethpostigo.me&amp;enablejsapi=1&amp;widgetid=1',
             newnum = videoInfo[2],
             newqueryString = videoInfo[3];
 
@@ -178,7 +178,7 @@ function onYouTubeIframeAPIReady() {
         width: 640,
         videoId: playlist,
         playerVars: {
-            origin: 'http://kennethpostigo.me',
+            origin: 'https://kennethpostigo.me',
             controls: 0,
             color: 'white',
             autoplay: 1,
