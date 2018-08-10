@@ -37,7 +37,7 @@ var player,
 
 
 function loadYouTube(query) {
-  search = query;
+  search = 'royalty free ' + query;
   var search_URI = `q=${search}&`,
     dataAPI = dataURI + part_URI + maxResults_URI + order_URI + search_URI + type_URI;
 
