@@ -12,11 +12,11 @@ function processImage(imageURL) {
         "returnFaceAttributes": "emotion"
     };
 
-    var happyArray = ["pop music", "edm", ""];
+    var happyArray = ["pop music", "edm", "happy music"];
     var sadArray = ["rainy jazz", "emo", "blues"];
     var angryArray = ["metal", "test2", "test3"];
     var neutralArray = ["test1", "test2", "test3"];
-    var querySelection;
+    var querySelection = '';
 
     // var paramString = $.param(params);
 
@@ -35,11 +35,11 @@ function processImage(imageURL) {
                 .done(function (data) {
                     console.log(JSON.stringify(data));
                     var emotions = data[0].faceAttributes.emotion;
-                    var emotions2 = {"happy": emotions.happiness, "sad" : emotions.sadness, "neutral" : emotions.neutral, "anger" : emotions.anger};
+                    var emotions2 = { "happy": emotions.happiness, "sad": emotions.sadness, "neutral": emotions.neutral, "anger": emotions.anger };
                     var random = Math.floor(Math.random() * 3);
                     var highestEmotion = Object.keys(emotions2).reduce((a, b) => emotions2[a] > emotions2[b] ? a : b);
                     console.log(highestEmotion);
-                    if (highestEmotion === "happy"){
+                    if (highestEmotion === "happy") {
                         querySelection = happyArray[random];
                     }
                     else if (highestEmotion === "sad") {
@@ -51,12 +51,11 @@ function processImage(imageURL) {
                     else {
                         querySelection = neutralArray[random];
                     }
+                    console.log(querySelection);
                 })
                 .fail(function (err) {
                     console.log(JSON.stringify(err));
-                })
-        }
-        )
-        return querySelection;
+                });
+        });
+    return querySelection;
 }
-
