@@ -351,6 +351,7 @@ function processImage(imageURL) {
             })
                 .done(function (data) {
                     if (data.length < 1) {
+                        $("#sentiment").removeClass("happy sad anger fail neutral");
                         $("#sentiment").text("We weren't able to register a face in that image. Please try again!").addClass("fail");
                         getGif("failure");
                     }
@@ -366,21 +367,25 @@ function processImage(imageURL) {
                     var highestEmotion = Object.keys(emotions2).reduce((a, b) => emotions2[a] > emotions2[b] ? a : b);
                     console.log(highestEmotion);
                     if (highestEmotion === "happy") {
+                        $("#sentiment").removeClass("happy sad anger fail neutral");
                         queryString = happyArray[random];
                         $("#sentiment").text("Happy! :)").addClass("happy");
                         getGif("happy");
                     }
                     else if (highestEmotion === "sad") {
+                        $("#sentiment").removeClass("happy sad anger fail neutral");
                         queryString = sadArray[random];
                         $("#sentiment").text("Sad :(").addClass("sad");
                         getGif("sad");
                     }
                     else if (highestEmotion === "anger") {
+                        $("#sentiment").removeClass("happy sad anger fail neutral");
                         queryString = angryArray[random];
                         $("#sentiment").text("ANGRY!! >:(").addClass("anger");
                         getGif("angry");
                     }
                     else {
+                        $("#sentiment").removeClass("happy sad anger fail neutral");
                         queryString = neutralArray[random];
                         $("#sentiment").text("You feel nothing.").addClass("neutral");
                         getGif("bored");
