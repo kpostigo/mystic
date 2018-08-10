@@ -41,15 +41,23 @@ function processImage(imageURL) {
                     console.log(highestEmotion);
                     if (highestEmotion === "happy") {
                         querySelection = happyArray[random];
+                        $("#sentiment").text("Happy! :)").addClass("happy");
+                        getGif("happy");
                     }
                     else if (highestEmotion === "sad") {
                         querySelection = sadArray[random];
+                        $("#sentiment").text("Sad :(").addClass("sad");
+                        getGif("sad");
                     }
                     else if (highestEmotion === "anger") {
                         querySelection = angryArray[random];
+                        $("#sentiment").text("ANGRY!! >:(").addClass("anger");
+                        getGif("angry");
                     }
                     else {
                         querySelection = neutralArray[random];
+                        $("#sentiment").text("You feel nothing.").addClass("neutral");
+                        getGif("bored");
                     }
                     console.log(querySelection);
                 })
@@ -59,3 +67,28 @@ function processImage(imageURL) {
         });
     return querySelection;
 }
+
+function getGif(emotion) {
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        emotion + "&api_key=dc6zaTOxFJmzC&limit=1";
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+        .then(function(response) {
+          console.log(queryURL);
+
+          console.log(response);
+          var results = response.data;
+
+          var div = $("<div>");
+          var gif = $("<img>");
+          
+          gif.attr("src", results[0].images.fixed_height.url);
+
+          div.append(gif);
+
+          $("#sentiment").prepend(div);
+        })
+ };

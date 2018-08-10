@@ -350,6 +350,11 @@ function processImage(imageURL) {
                 data: blobData
             })
                 .done(function (data) {
+                    if (data.length < 1) {
+                        $("#sentiment").text("We weren't able to register a face in that image. Please try again!").addClass("fail");
+                        getGif("failure");
+                    }
+                    else {
                     var emotions = data[0].faceAttributes.emotion;
                     var emotions2 = {
                         happy: emotions.happiness,
@@ -362,20 +367,54 @@ function processImage(imageURL) {
                     console.log(highestEmotion);
                     if (highestEmotion === "happy") {
                         queryString = happyArray[random];
+                        $("#sentiment").text("Happy! :)").addClass("happy");
+                        getGif("happy");
                     }
                     else if (highestEmotion === "sad") {
                         queryString = sadArray[random];
+                        $("#sentiment").text("Sad :(").addClass("sad");
+                        getGif("sad");
                     }
                     else if (highestEmotion === "anger") {
                         queryString = angryArray[random];
+                        $("#sentiment").text("ANGRY!! >:(").addClass("anger");
+                        getGif("angry");
                     }
                     else {
                         queryString = neutralArray[random];
+                        $("#sentiment").text("You feel nothing.").addClass("neutral");
+                        getGif("bored");
                     }
+                }
                 })
                 .fail(function (err) {
                     console.log(JSON.stringify(err));
                 });
         });
     console.log(queryString);
-}
+};
+
+function getGif(emotion) {
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        emotion + "&api_key=dc6zaTOxFJmzC&limit=1";
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+        .then(function (response) {
+            console.log(queryURL);
+
+            console.log(response);
+            var results = response.data;
+
+            var div = $("<div>");
+            var gif = $("<img>");
+
+            gif.attr("src", results[0].images.fixed_height.url);
+
+            div.append(gif);
+
+            $("#sentiment").prepend(div);
+        })
+};
