@@ -145,3 +145,34 @@ html {
     font-family: 'Muli', sans-serif;
     line-height: 18px;
 }
+
+
+/* CSS for the step 2 sentiment div text */
+
+.happy {
+    color: yellow;
+    text-align: center;
+    font-weight: bold;
+    font-size: 3em;
+}
+
+.sad {
+    color: blue;
+    text-align: center;
+    font-weight: bold;
+    font-size: 3em;
+}
+
+.angry {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    font-size: 3em;
+}
+
+.neutral {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 3em;
+}
