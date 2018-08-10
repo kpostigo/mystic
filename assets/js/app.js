@@ -4,6 +4,17 @@
  *                                                                            *
 \******************************************************************************/
 
+$(document).ready(function () {
+    //$('#snap').hide();
+    let numVids = parseInt(localStorage.videos);
+    if (numVids > 0) {
+        videos = numVids;
+        pagestart = true;
+        createTable();
+    } else {
+        $('.clearVids').hide();
+    }
+});
 
 /*****************************  VARIABLES  ************************************/
 
@@ -18,14 +29,19 @@ function randomize() {
 
 // restrict api key before publishing
 var playlist,
+    videos = 0,
+    pagestart = false,
     search,
-    analyze = false,
-    dataAPI_key = 'AIzaSyC6IMRpjLTVrKcquFMtbqhSB-by1Lp1sNU',
+    analyze = false;
+
+var dataAPI_key = 'AIzaSyC6IMRpjLTVrKcquFMtbqhSB-by1Lp1sNU',
     dataURI = `https://www.googleapis.com/youtube/v3/search?key=${dataAPI_key}&`,
     part = 'snippet',
-    maxResults = 20,
+    maxResults = 25,
     order = 'viewCount',
-    type = 'playlist';
+    type = 'video',
+    num,
+    renum;
 
 var part_URI = `part=${part}&`,
     type_URI = `type=${type}`,
@@ -40,18 +56,10 @@ var queryString;
 
 
 function loadYouTube() {
-    search = queryString;
+    search = 'royalty free ' + queryString;
     var search_URI = `q=${search}&`,
         dataAPI = dataURI + part_URI + maxResults_URI + order_URI + search_URI + type_URI;
 
-    if (analyze) {
-        $('iframe').remove();
-        let div = $('<div>');
-        div.attr('id', 'player');
-        div.prependTo('.playlist');
-    } else {
-        analyze = true;
-    }
     console.log(search);
     setTimeout(makeAjaxCall(dataAPI), 3000);
 }
@@ -66,13 +74,89 @@ function makeAjaxCall(url) {
             }
         }
     }).then(function (response) {
-        let num = randomize();
-        playlist = response.items[num].id.playlistId;
-        console.log(response);
-        console.log(num);
-        loadiFrame();
+        if (pagestart === true) {
+            num = renum;
+            playlist = response.items[num].id.videoId;
+            pagestart = false;
+        } else {
+            num = randomize();
+
+            playlist = response.items[num].id.videoId;
+            let title = response.items[num].snippet.title;
+            localStorage.setItem(videos, title + '++' + playlist + '++' + num + '++' + queryString);
+            videos++;
+            localStorage.setItem('videos', videos);
+            createTable();
+        }
+
+        if (analyze) {
+            let source = 'https://www.youtube.com/embed/' + playlist + '?origin=http%3A%2F%2Fkennethpostigo.me&amp;enablejsapi=1&amp;widgetid=1';
+            $('iframe').attr('src', source);
+        } else {
+            analyze = true;
+            setTimeout(loadiFrame, 1000);
+        }
     });
 }
+
+function createTable() {
+    // create the table and add videos
+    $('.clearVids').show();
+
+    let tablediv = $('.table'),
+        table = $('<table>'),
+        hrow = $('<tr>'),
+        head = $('<th>');
+
+    tablediv.empty();
+    table.attr('class', 'vidlist');
+    head.text('Video History');
+    hrow.append(head);
+    table.append(hrow);
+    tablediv.append(table);
+
+    for (let i = 0; i < videos; i++) {
+        let videoInfo = localStorage.getItem('' + i + '').split('++'),
+            videoTitle = videoInfo[0],
+            videoLink = 'https://www.youtube.com/embed/' + videoInfo[1] + '?origin=http%3A%2F%2Fkennethpostigo.me&amp;enablejsapi=1&amp;widgetid=1',
+            newnum = videoInfo[2],
+            newqueryString = videoInfo[3];
+
+        let row = $('<tr>'),
+            cell = $('<td>');
+
+        cell.attr({
+            class: i,
+            'data-src': videoLink,
+            'data-num': newnum,
+            'data-query': newqueryString
+        });
+        cell.text(videoTitle);
+        row.append(cell)
+        $('.vidlist').append(row);
+    }
+}
+
+function resetTable() {
+    videos = 0;
+    localStorage.clear();
+    $('.table').empty();
+}
+
+$(document).on('click', '#clearVids', function () {
+    resetTable();
+    $('.clearVids').hide();
+});
+
+$(document).on('click', 'td', function () {
+    if (pagestart === true) {
+        queryString = $(this).attr('data-query');
+        renum = $(this).attr('data-num');
+        loadYouTube();
+    }
+    $('iframe').attr('src', $(this).attr('data-src'));
+    $('iframe').show();
+});
 
 /******************************************************************************/
 /**************************** YOUTUBE IFRAME API  *****************************/
@@ -81,7 +165,7 @@ function makeAjaxCall(url) {
 function loadiFrame() {
     // api loads through the script tag
     var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/player_api/?origin='http://kennethpostigo.me'";
+    tag.src = "https://www.youtube.com/player_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 }
@@ -92,28 +176,23 @@ function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         height: 390,
         width: 640,
-        controls: 1,
-        iv_load_policy: 3,
+        videoId: playlist,
         playerVars: {
-            listType: 'playlist',
-            list: playlist
-        },
-        events: {
-            'onReady': onPlayerReady
+            origin: 'http://kennethpostigo.me',
+            controls: 0,
+            color: 'white',
+            autoplay: 1,
+            iv_load_policy: 3, // video annotations
+            rel: 0, // related videos
+            showinfo: 0
+            // loop: 1
+
+            // for playlists
+
+            //listType: 'playlist',
+            //list: playlist
         }
     });
-}
-
-
-// iFrame API calls this when video player is ready
-function onPlayerReady(event) {
-    event.target.stopVideo();
-}
-
-
-// self explanatory
-function stopVideo() {
-    player.stopVideo();
 }
 
 
@@ -146,6 +225,7 @@ var data;
 
 //adds mediaStream to the video
 function gotLocalMediaStream(mediaStream) {
+    //$('#snap').show();
     localStream = mediaStream;
     localVideo.srcObject = mediaStream;
 }
@@ -207,6 +287,9 @@ $("#analyze").on("click", function () {
     $("#analyze").hide();
     $("#camera").show();
     $("#photo").hide();
+    $('iframe').show();
+
+    pagestart = false;
 })
 
 
@@ -247,10 +330,10 @@ function processImage(imageURL) {
         "returnFaceAttributes": "emotion"
     };
 
-    var happyArray = ["pop music", "edm", "happy music"];
-    var sadArray = ["rainy jazz", "emo", "blues"];
-    var angryArray = ["metal", "test2", "test3"];
-    var neutralArray = ["test1", "test2", "test3"];
+    var happyArray = ["pop music", "edm music", "funk music"];
+    var sadArray = ["sad jazz", "sad music", "blues music"];
+    var angryArray = ["heavy metal", "hardcore punk music", "gangsta rap"];
+    var neutralArray = ["70s rock", "classical music", "reggae music"];
 
     // var paramString = $.param(params);
 

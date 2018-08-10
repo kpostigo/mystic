@@ -442,7 +442,7 @@ module.exports = function() {
   // A shim for getUserMedia method on the mediaDevices object.
   // TODO(KaptenJansson) remove once implemented in Chrome stable.
   if (!navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia = function(constraints) {
+    navigator.mediaDevices.getUserMedia = function (constraints) {
       return getUserMediaPromise_(constraints);
     };
   } else {
@@ -2112,7 +2112,7 @@ var firefoxShim = {
     navigator.getUserMedia = getUserMedia_;
 
     // Returns the result of getUserMedia as a Promise.
-    var getUserMediaPromise_ = function(constraints) {
+    var getUserMediaPromise_ = function (constraints) {
       return new Promise(function(resolve, reject) {
         navigator.getUserMedia(constraints, resolve, reject);
       });
