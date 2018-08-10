@@ -56,6 +56,10 @@ var queryString;
 
 
 function loadYouTube() {
+    if (queryString === "undefined") {
+        return;
+    }
+    
     search = 'royalty free ' + queryString;
     var search_URI = `q=${search}&`,
         dataAPI = dataURI + part_URI + maxResults_URI + order_URI + search_URI + type_URI;
