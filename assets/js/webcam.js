@@ -70,6 +70,11 @@ $("#takeAnother").on("click", function() {
 $("#analyze").on("click", function() {
     var canvas = document.getElementById("photo");
     data = canvas.toDataURL('image/png');
+    var queryString = processImage(data);
+    console.log('analyze clicked with: ' + queryString);
+    setTimeout(loadYouTube(queryString), 2000);
+    console.log('loading Youtube');
+
     $("#snap").show();
     $("#takeAnother").hide();
     $("#analyze").hide();
