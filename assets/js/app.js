@@ -276,7 +276,7 @@ $("#takeAnother").on("click", function () {
     $("#photo").hide();
     $("#snap").show();
     $("#takeAnother").hide();
-    $("#analyze").show();
+    $("#analyze").hide();
 });
 
 $("#analyze").on("click", function () {
