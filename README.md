@@ -22,3 +22,6 @@
 
 ### User Input Validation:
 - the webcam/buttons to take/confirm snapshot
+
+### Artwork credit:
+http://juliewinegard.com/
