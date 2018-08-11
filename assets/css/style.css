@@ -61,18 +61,19 @@ html {
 
 .three{
     background-color: #252946;
+    height: 100%;
     margin-bottom: 0px;
 }
 
 .four{
     background-color:#D88670; 
     height: 400px;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
 }
 
 .five{
     background-color: #FADDCC;
-    height: 500px;
+    height: auto;
     margin-bottom: 0px;
 }
 
@@ -147,6 +148,8 @@ html {
 }
 
 
+
+
 /* CSS for the step 2 sentiment div text */
 
 .happy {
@@ -154,6 +157,7 @@ html {
     text-align: center;
     font-weight: bold;
     font-size: 3em;
+    font-family: 'Muli', sans-serif;
 }
 
 .sad {
@@ -161,6 +165,7 @@ html {
     text-align: center;
     font-weight: bold;
     font-size: 3em;
+    font-family: 'Muli', sans-serif;
 }
 
 .angry {
@@ -168,6 +173,7 @@ html {
     text-align: center;
     font-weight: bold;
     font-size: 3em;
+    font-family: 'Muli', sans-serif;
 }
 
 .neutral {
@@ -175,6 +181,7 @@ html {
     text-align: center;
     font-weight: bold;
     font-size: 3em;
+    font-family: 'Muli', sans-serif;
 }
 
 /* CSS for the step 2 sentiment div text */
@@ -217,4 +224,11 @@ html {
     font-weight: bold;
     font-size: 2em;
     font-family: 'Muli', sans-serif;
+}
+
+.table{
+    margin: 30px;
+    margin-left: 20px;
+    font-family: 'Muli', sans-serif;
+    color:#D88670; 
 }
