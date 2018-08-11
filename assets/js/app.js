@@ -59,7 +59,7 @@ function loadYouTube() {
     if (queryString === "undefined") {
         return;
     }
-    
+
     search = 'royalty free ' + queryString;
     var search_URI = `q=${search}&`,
         dataAPI = dataURI + part_URI + maxResults_URI + order_URI + search_URI + type_URI;
@@ -322,29 +322,23 @@ function renderPhoto(data) {
 
 function processImage(imageURL) {
 
+    // API keys used for Face API call
     var key1 = "6afd15ab009b4fe4ac99050056e2ec27";
     var key2 = "6ae8da5ab77f4d76a9a8c9570f428b9d";
     var endpoint = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect";
-
-    var subscriptionKey = key1;
-
-    var params = {
-        "returnFaceId": "true",
-        "returnFaceLandmarks": "false",
-        "returnFaceAttributes": "emotion"
-    };
 
     var happyArray = ["pop music", "edm music", "funk music"];
     var sadArray = ["sad jazz", "sad music", "blues music"];
     var angryArray = ["heavy metal", "hardcore punk music", "gangsta rap"];
     var neutralArray = ["70s rock", "classical music", "reggae music"];
 
-    // var paramString = $.param(params);
-
+    // converts the image taken by the camera into a BLOB (binary large object) and POSTs it to Microsoft Cognitive Services servers
     fetch(imageURL)
         .then(res => res.blob())
         .then(blobData => {
             $.post({
+
+                // API call parameters
                 url: endpoint + "?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=emotion",
                 contentType: "application/octet-stream",
                 headers: {
@@ -354,47 +348,48 @@ function processImage(imageURL) {
                 data: blobData
             })
                 .done(function (data) {
+                    // if no emotional analysis is returned from the API call this will alert the user to take another picture
                     if (data.length < 1) {
                         $("#sentiment").removeClass("happy sad anger fail neutral");
                         $("#sentiment").text("We weren't able to register a face in that image. Please try again!").addClass("fail");
                         getGif("failure");
                     }
                     else {
-                    var emotions = data[0].faceAttributes.emotion;
-                    var emotions2 = {
-                        happy: emotions.happiness,
-                        sad: emotions.sadness,
-                        neutral: emotions.neutral,
-                        anger: emotions.anger
-                    };
-                    var random = Math.floor(Math.random() * 3);
-                    var highestEmotion = Object.keys(emotions2).reduce((a, b) => emotions2[a] > emotions2[b] ? a : b);
-                    console.log(highestEmotion);
-                    if (highestEmotion === "happy") {
-                        $("#sentiment").removeClass("happy sad anger fail neutral");
-                        queryString = happyArray[random];
-                        $("#sentiment").text("Happy! :)").addClass("happy");
-                        getGif("happy");
+                        var emotions = data[0].faceAttributes.emotion;
+                        var emotions2 = {
+                            happy: emotions.happiness,
+                            sad: emotions.sadness,
+                            neutral: emotions.neutral,
+                            anger: emotions.anger
+                        };
+                        var random = Math.floor(Math.random() * 3);
+                        var highestEmotion = Object.keys(emotions2).reduce((a, b) => emotions2[a] > emotions2[b] ? a : b);
+                        console.log(highestEmotion);
+                        if (highestEmotion === "happy") {
+                            $("#sentiment").removeClass("happy sad anger fail neutral");
+                            queryString = happyArray[random];
+                            $("#sentiment").text("Happy! :)").addClass("happy");
+                            getGif("happy");
+                        }
+                        else if (highestEmotion === "sad") {
+                            $("#sentiment").removeClass("happy sad anger fail neutral");
+                            queryString = sadArray[random];
+                            $("#sentiment").text("Sad :(").addClass("sad");
+                            getGif("sad");
+                        }
+                        else if (highestEmotion === "anger") {
+                            $("#sentiment").removeClass("happy sad anger fail neutral");
+                            queryString = angryArray[random];
+                            $("#sentiment").text("ANGRY!! >:(").addClass("anger");
+                            getGif("angry");
+                        }
+                        else {
+                            $("#sentiment").removeClass("happy sad anger fail neutral");
+                            queryString = neutralArray[random];
+                            $("#sentiment").text("You feel nothing.").addClass("neutral");
+                            getGif("bored");
+                        }
                     }
-                    else if (highestEmotion === "sad") {
-                        $("#sentiment").removeClass("happy sad anger fail neutral");
-                        queryString = sadArray[random];
-                        $("#sentiment").text("Sad :(").addClass("sad");
-                        getGif("sad");
-                    }
-                    else if (highestEmotion === "anger") {
-                        $("#sentiment").removeClass("happy sad anger fail neutral");
-                        queryString = angryArray[random];
-                        $("#sentiment").text("ANGRY!! >:(").addClass("anger");
-                        getGif("angry");
-                    }
-                    else {
-                        $("#sentiment").removeClass("happy sad anger fail neutral");
-                        queryString = neutralArray[random];
-                        $("#sentiment").text("You feel nothing.").addClass("neutral");
-                        getGif("bored");
-                    }
-                }
                 })
                 .fail(function (err) {
                     console.log(JSON.stringify(err));
