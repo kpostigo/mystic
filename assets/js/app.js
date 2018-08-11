@@ -19,7 +19,7 @@ $(document).ready(function () {
 /*****************************  VARIABLES  ************************************/
 
 function randomize() {
-    return randomnumber = Math.floor(Math.random() * maxResults + 1);
+    return randomnumber = Math.floor(Math.random() * maxResults);
 }
 
 
@@ -84,7 +84,8 @@ function makeAjaxCall(url) {
             pagestart = false;
         } else {
             num = randomize();
-
+            console.log(num);
+            console.log(response);
             playlist = response.items[num].id.videoId;
             let title = response.items[num].snippet.title;
             localStorage.setItem(videos, title + '++' + playlist + '++' + num + '++' + queryString);
@@ -283,7 +284,7 @@ $("#analyze").on("click", function () {
     data = canvas.toDataURL('image/png');
     processImage(data);
     console.log('analyze clicked with: ' + queryString);
-    window.setTimeout(loadYouTube, 2000);
+    window.setTimeout(loadYouTube, 4000);
     console.log('loading Youtube');
 
     $("#snap").show();
