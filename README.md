@@ -9,6 +9,7 @@
   - [youtube data](https://developers.google.com/youtube/v3/)
 - emotion analysis
   - [microsoft cognitive services - Face](https://azure.microsoft.com/en-us/services/cognitive-services/face/)
+  - [giphy](https://developers.giphy.com/docs/)
 
 ### Library:
 - [adapter.js (for webRTC)](https://github.com/webrtc/adapter)
